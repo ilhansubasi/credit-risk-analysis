@@ -42,10 +42,10 @@ tab <- table(Predicted = ypredbin, Actual = test.data$`Credit Risk`)
 
 library(MASS)
 
-step<-stepAIC(log.model, direction = "backward")
+step <- stepAIC(log.model, direction = "backward")
 step$anova
 
-log.model<-glm(`Credit Risk` ~ Checking + Savings + `Months Customer`  + `Marital Status`+ Job, data = train.data, family = "binomial")
+log.model <- glm(`Credit Risk` ~ Checking + Savings + `Months Customer`  + `Marital Status`+ Job, data = train.data, family = "binomial")
 summary(log.model)
 
 ypred <- predict(log.model, test.data)
