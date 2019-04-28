@@ -6,6 +6,7 @@ summary(CreditRiskDataSet)
 library(e1071)
 #attach(CreditRiskDataSet)
 
+# These are categorical variables
 CreditRiskDataSet$Gender <- factor(CreditRiskDataSet$Gender)
 CreditRiskDataSet$`Loan Purpose` <- factor(CreditRiskDataSet$`Loan Purpose`)
 CreditRiskDataSet$`Marital Status` <- factor(CreditRiskDataSet$`Marital Status`)
@@ -42,6 +43,7 @@ tab <- table(Predicted = ypredbin, Actual = test.data$`Credit Risk`)
 
 library(MASS)
 
+# Stepwise regression
 step <- stepAIC(log.model, direction = "backward")
 step$anova
 
@@ -55,5 +57,5 @@ CrossTable(test.data$`Credit Risk`, ypredbin)
 tab <- table(Predicted = ypredbin, Actual = test.data$`Credit Risk`)
 1-sum(diag(tab))/sum(tab)
 
-#confusion matrix
+# Confusion matrix
 table(test.data$`Credit Risk`, ypred > 0.5)
